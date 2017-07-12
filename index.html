@@ -98,6 +98,8 @@
       Todo: <span id="todo-count">1</span> •
       Done: <span id="completed-count">0</span> •
       Total: <span id="total-count">1</span>
+      <hr>
+      <a href="#" id="clean-up">Clean up</a>
     </div>
   </div>
 
@@ -162,13 +164,11 @@
     }
   }
 
-
-
-
-
-
-
-
+  function cleanUpDoneTodos(event) {
+    event.preventDefault();
+    $.when($(".completed").remove())
+      .then(updateCounters);
+  }
 
 
   $("#total-count").html($(".todo").length);
@@ -177,6 +177,7 @@
     updateCounters(); // Just add this line
   });
   $("form").bind('submit', submitTodo);
+  $("#clean-up").bind('click', cleanUpDoneTodos);
 
 
   </script>
